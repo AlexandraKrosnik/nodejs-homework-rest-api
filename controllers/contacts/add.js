@@ -1,9 +1,8 @@
 const { BadRequest } = require("http-errors");
-
-const contactsOperations = require("../../models/contacts");
+const { Contact } = require("../../models");
 
 const add = async (req, res) => {
-  const contact = await contactsOperations.addContact(req.body);
+  const contact = await Contact.create(req.body);
   if (!contact) {
     throw BadRequest(
       `Contact with phone=${req.body.phone} has already been added!`
