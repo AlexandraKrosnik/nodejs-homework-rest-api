@@ -17,6 +17,11 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -29,6 +34,7 @@ const joiSchema = Joi.object({
     .messages({ "string.pattern.base": `Phone number must have 10 digits.` })
     .required(),
   favorite: Joi.boolean(),
+  owner: Joi.string(),
 });
 
 const favoriteJoiSchema = Joi.object({
