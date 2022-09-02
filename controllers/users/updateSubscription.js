@@ -2,8 +2,7 @@ const { User } = require("../../models");
 const { NotFound } = require("http-errors");
 
 const updateSubscription = async (req, res) => {
-  const { subscription = "starter" } = req.body;
-  console.log(subscription);
+  const { subscription } = req.body;
   const { id, email } = req.user;
   const user = await User.findByIdAndUpdate(id, { subscription });
   if (!user) {
